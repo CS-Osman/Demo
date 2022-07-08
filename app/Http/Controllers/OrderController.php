@@ -34,9 +34,15 @@ class OrderController extends Controller
      * @param  \App\Http\Requests\StoreOrderRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOrderRequest $request)
+    public function store($id)
     {
-        //
+        $order = Order::create([
+            'user_id' => 1,
+            'product_id' => $id,
+        ]);
+        $order->save();
+        return redirect()->back()->with('success', ' تم ارسال طلبك  بنجاح  ');
+
     }
 
     /**

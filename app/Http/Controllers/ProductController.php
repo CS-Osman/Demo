@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Order;
 use App\Models\Product;
 
 class ProductController extends Controller
@@ -15,7 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        return view('welcome', compact('products'));
     }
 
     /**
@@ -36,7 +38,8 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        $contact  = Order::create($request->validated()); 
+        return redirect()->back()->with('success', ' تم ارسال طلبك  بنجاح ! ');
     }
 
     /**
